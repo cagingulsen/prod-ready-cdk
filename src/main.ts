@@ -1,10 +1,17 @@
-import { App, Construct, Stack, StackProps } from '@aws-cdk/core';
+import { App, Stack, StackProps } from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { Construct } from 'constructs';
 
-export class MyStack extends Stack {
+export class LambdaStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
     super(scope, id, props);
 
-    // define resources here...
+    new lambda.Function(this, 'ExampleFunction', {
+      functionName: 'example-lambda',
+      code: lambda.Code.fromAsset('lambda'),
+      handler: 'hello.handler',
+      runtime: lambda.Runtime.NODEJS_14_X,
+    });
   }
 }
 
@@ -16,7 +23,7 @@ const devEnv = {
 
 const app = new App();
 
-new MyStack(app, 'my-stack-dev', { env: devEnv });
-// new MyStack(app, 'my-stack-prod', { env: prodEnv });
+new LambdaStack(app, 'lambda-stack-dev', { env: devEnv });
+// new LambdaStack(app, 'lambda-stack-prod', { env: prodEnv });
 
 app.synth();
