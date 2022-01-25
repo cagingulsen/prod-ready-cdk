@@ -1,11 +1,11 @@
-import '@aws-cdk/assert/jest';
-import { App } from '@aws-cdk/core';
-import { MyStack } from '../src/main';
+import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import { LambdaStack } from '../src/main';
 
-test('Snapshot', () => {
-  const app = new App();
-  const stack = new MyStack(app, 'test');
+test('Lambda created', () => {
+  const app = new cdk.App();
+  const stack = new LambdaStack(app, 'LambdaStack');
+  const template = Template.fromStack(stack);
 
-  expect(stack).not.toHaveResource('AWS::S3::Bucket');
-  expect(app.synth().getStackArtifact(stack.artifactId).template).toMatchSnapshot();
+  template.resourceCountIs('AWS::Lambda::Function', 1);
 });
