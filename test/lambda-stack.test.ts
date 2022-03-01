@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { LambdaStack } from '../src/main';
+import { LambdaStack } from '../src/lambda-stack';
 
 test('Lambda created', () => {
   const app = new cdk.App();

@@ -2,7 +2,7 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
   authorAddress: 'cagingulsen@gmail.com',
   authorName: 'Kemal Cagin Gulsen',
-  cdkVersion: '2.8.0',
+  cdkVersion: '2.15.0',
   defaultReleaseBranch: 'main',
   name: 'prod-ready-cdk',
   description: 'An AWS CDK App project to learn more about it',
