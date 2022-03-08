@@ -14,9 +14,9 @@ export class CdkPipelineStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const codePipelineSource = CodePipelineSource.connection('cagingulsen/prod-ready-cdk','main', { 
-      connectionArn: 'arn:aws:codestar-connections:eu-west-1:YOUR_ACCOUNTI_D:connection/YOUR_CONNECTION_ID'
-      },
+    const codePipelineSource = CodePipelineSource.connection('cagingulsen/prod-ready-cdk', 'main', {
+      connectionArn: 'arn:aws:codestar-connections:eu-west-1:YOUR_ACCOUNTI_D:connection/YOUR_CONNECTION_ID',
+    },
     );
 
     const cdkPipeline = new CodePipeline(this, 'CdkPipeline', {
@@ -32,5 +32,5 @@ export class CdkPipelineStack extends Stack {
     });
 
     cdkPipeline.addStage(new LambdaStage(this, 'dev'));
-	}
+  }
 }
